@@ -19,7 +19,6 @@ public:
 	vector<Object*>	GetObjectsAt( float x, float y );
 	void	Clear();
 
-	void	SetFont( const sf::Font &font );
 	void	Draw( sf::RenderTarget &canvas );
 
 private:
@@ -38,7 +37,6 @@ private:
 	Quadtree *	SE;
 
 	sf::Shape	shape;
-	sf::String	text;
 
 	bool	Contains( Quadtree *child, Object *object );
 };

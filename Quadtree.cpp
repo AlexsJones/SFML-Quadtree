@@ -13,15 +13,8 @@ Quadtree::Quadtree( float _x, float _y, float _width, float _height, int _level,
 	level	( _level ),
 	maxLevel( _maxLevel )
 {
-	shape.SetPosition(x,y);
-	shape.SetScale(sf::Vector2f(width,height));
-	shape.SetOutlineWidth(1.0f);
-	shape.SetColor(sf::Color(0,0,0,0));
+	shape = sf::Shape::Rectangle ( x, y, x + width, y + height,sf::Color(0,0,0,0),1.0f, sf::Color( 32, 128, 255 ) );
 	
-	
-	text.SetSize(12);
-	text.SetPosition( x, y + level * 16 );
-
 	if ( level == maxLevel ) {
 		return;
 	}
@@ -99,15 +92,21 @@ void Quadtree::Clear() {
 	}
 }
 
-void Quadtree::SetFont( const sf::Font &font ) {
-	text.SetFont( font );
+void Quadtree::Draw( sf::RenderTarget &canvas ) {
+	stringstream ss;
+	ss << objects.size();
+	string numObjectsStr = ss.str();
+	
+	canvas.Draw( shape );
+
 	if ( level != maxLevel ) {
-		NW->SetFont( font );
-		NE->SetFont( font );
-		SW->SetFont( font );
-		SE->SetFont( font );
+		NW->Draw( canvas );
+		NE->Draw( canvas );
+		SW->Draw( canvas );
+		SE->Draw( canvas );
 	}
 }
+
 bool Quadtree::Contains( Quadtree *child, Object *object ) {
 	return	 !( object->x < child->x ||
 				object->y < child->y ||

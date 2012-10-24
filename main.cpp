@@ -15,14 +15,11 @@ int main()
 	sf::RenderWindow app( sf::VideoMode( 800, 600, 32 ), "Quadtree" );
 	app.SetFramerateLimit( 60 );
 
-	sf::Font font;
-	font.LoadFromFile( "DroidSans.ttf" );
-
 	Quadtree quadtree( 0.0f, 0.0f, 800.0f, 600.0f, 0, 3 );
-	quadtree.SetFont();
+
 
 	vector<Object> objects;
-	
+
 	while( app.IsOpened() ) {
 		sf::Event event;
 		sf::Vector2f mousePosition = app.ConvertCoords(app.GetInput().GetMouseX(), app.GetInput().GetMouseY());
@@ -42,7 +39,7 @@ int main()
 			quadtree.AddObject( &objects[n] );
 			objects[n].Draw( app );
 		}
-		//quadtree.Draw( app );
+		quadtree.Draw( app );
 
 		vector<Object*> returnObjects = quadtree.GetObjectsAt( mousePosition.x, mousePosition.y );
 		cout << returnObjects.size() << endl;
