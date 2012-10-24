@@ -1,7 +1,7 @@
 // QuadtreeSimple.cpp : Demonstrates the use of Quadtree using SFML
 //
 
-#include "Quadtree.h"
+#include "quadtree.h"
 #include "Object.h"
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
@@ -15,7 +15,7 @@ int main()
 	sf::RenderWindow app( sf::VideoMode( 800, 600, 32 ), "Quadtree" );
 	app.SetFramerateLimit( 60 );
 
-	Quadtree quadtree( 0.0f, 0.0f, 800.0f, 600.0f, 0, 3 );
+	quadtree _quadtree( 0.0f, 0.0f, 800.0f, 600.0f, 0, 3 );
 	vector<Object> objects;
 
 	objects.push_back( Object( 0,0, 32, 32 ) );
@@ -35,7 +35,7 @@ int main()
 
 		for ( int n = 0; n < objects.size(); ++n )
 		{
-			quadtree.AddObject( &objects[n] );
+			_quadtree.AddObject( &objects[n] );
 			objects[n].Draw( app );
 		}
 		while( app.GetEvent( event ) ) 
@@ -49,13 +49,13 @@ int main()
 			}
 			if ( event.Type == sf::Event::MouseButtonPressed ) 
 			{
-				vector<Object*> returnObjects = quadtree.GetObjectsAt( mousePosition.x, mousePosition.y );
+				vector<Object*> returnObjects = _quadtree.GetObjectsAt( mousePosition.x, mousePosition.y );
 	
 				cout << returnObjects.size() << endl;
 			}
 		}
 							
-		quadtree.Clear();
+		_quadtree.Clear();
 
 		app.Display();
 	}

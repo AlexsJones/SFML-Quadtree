@@ -8,19 +8,16 @@
 
 using namespace std;
 
-class Quadtree;
+class quadtree;
 class Object;
 
-class Quadtree {
+class quadtree {
 public:
-	Quadtree( float x, float y, float width, float height, int level, int maxLevel );
+	quadtree( float x, float y, float width, float height, int level, int maxLevel );
 
 	void	AddObject( Object *object );
 	vector<Object*>	GetObjectsAt( float x, float y );
 	void	Clear();
-
-	void	Draw( sf::RenderTarget &canvas );
-
 private:
 	float	x;
 	float	y;
@@ -30,15 +27,13 @@ private:
 	int		maxLevel;
 	vector<Object*>	objects;
 
-	Quadtree *	parent;
-	Quadtree *	NW;
-	Quadtree *	NE;
-	Quadtree *	SW;
-	Quadtree *	SE;
+	quadtree *	parent;
+	quadtree *	NW;
+	quadtree *	NE;
+	quadtree *	SW;
+	quadtree *	SE;
 
-	sf::Shape	shape;
-
-	bool	Contains( Quadtree *child, Object *object );
+	bool	Contains( quadtree *child, Object *object );
 };
 
 #endif
