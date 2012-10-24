@@ -5,14 +5,14 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/Shape.hpp>
 
-class Object {
+class treeobject {
 public:
 	float   x;
 	float	y;
 	float	width;
 	float	height;
 
-	Object( float x, float y, float width, float height );
+	treeobject( float x, float y, float width, float height );
 
 	void	Draw( sf::RenderTarget &canvas );
 

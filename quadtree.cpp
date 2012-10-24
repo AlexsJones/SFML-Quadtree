@@ -1,5 +1,5 @@
 #include "quadtree.h"
-#include "Object.h"
+#include "treeobject.h"
 #include <iostream>
 #include <sstream>
 
@@ -23,7 +23,7 @@ quadtree::quadtree( float _x, float _y, float _width, float _height, int _level,
 	SE = new quadtree( x + width / 2.0f, y + height / 2.0f, width / 2.0f, height / 2.0f, level+1, maxLevel );
 }
 
-void quadtree::add_object( Object *object ) {
+void quadtree::add_object( treeobject *object ) {
 	if ( level == maxLevel ) {
 		objects.push_back( object );
 		return;
@@ -42,12 +42,12 @@ void quadtree::add_object( Object *object ) {
 	}
 }
 
-vector<Object*> quadtree::get_objects_at( float _x, float _y ) {
+vector<treeobject*> quadtree::get_objects_at( float _x, float _y ) {
 	if ( level == maxLevel ) {
 		return objects;
 	}
 	
-	vector<Object*> returnObjects, childReturnObjects;
+	vector<treeobject*> returnObjects, childReturnObjects;
 	if ( !objects.empty() ) {
 		returnObjects = objects;
 	}
@@ -89,7 +89,7 @@ void quadtree::clear() {
 		objects.clear();
 	}
 }
-bool quadtree::contains( quadtree *child, Object *object ) {
+bool quadtree::contains( quadtree *child, treeobject *object ) {
 	return	 !( object->x < child->x ||
 				object->y < child->y ||
 				object->x > child->x + child->width  ||

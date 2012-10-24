@@ -2,7 +2,7 @@
 //
 
 #include "quadtree.h"
-#include "Object.h"
+#include "treeobject.h"
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/Font.hpp>
@@ -16,15 +16,15 @@ int main()
 	app.SetFramerateLimit( 60 );
 
 	quadtree _quadtree( 0.0f, 0.0f, 800.0f, 600.0f, 0, 3 );
-	vector<Object> objects;
+	vector<treeobject> objects;
 
-	objects.push_back( Object( 0,0, 32, 32 ) );
-	objects.push_back( Object( 100,100, 32, 32 ) );
-	objects.push_back( Object( 350,350, 32, 32 ) );
-	objects.push_back( Object( 500,500, 32, 32 ) );
-	objects.push_back( Object( 500,510, 32, 32 ) );
-	objects.push_back( Object( 500,520, 32, 32 ) );
-	objects.push_back( Object( 500,525, 32, 32 ) );
+	objects.push_back( treeobject( 0,0, 32, 32 ) );
+	objects.push_back( treeobject( 100,100, 32, 32 ) );
+	objects.push_back( treeobject( 350,350, 32, 32 ) );
+	objects.push_back( treeobject( 500,500, 32, 32 ) );
+	objects.push_back( treeobject( 500,510, 32, 32 ) );
+	objects.push_back( treeobject( 500,520, 32, 32 ) );
+	objects.push_back( treeobject( 500,525, 32, 32 ) );
 	
 	while( app.IsOpened() ) 
 	{
@@ -49,7 +49,7 @@ int main()
 			}
 			if ( event.Type == sf::Event::MouseButtonPressed ) 
 			{
-				vector<Object*> returnObjects = _quadtree.get_objects_at( mousePosition.x, mousePosition.y );
+				vector<treeobject*> returnObjects = _quadtree.get_objects_at( mousePosition.x, mousePosition.y );
 	
 				cout << returnObjects.size() << endl;
 			}

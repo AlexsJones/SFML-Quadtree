@@ -9,14 +9,14 @@
 using namespace std;
 
 class quadtree;
-class Object;
+class treeobject;
 
 class quadtree {
 public:
 	quadtree( float x, float y, float width, float height, int level, int maxLevel );
 
-	void	add_object( Object *object );
-	vector<Object*>	get_objects_at( float x, float y );
+	void	add_object( treeobject *object );
+	vector<treeobject*>	get_objects_at( float x, float y );
 	void	clear();
 private:
 	float	x;
@@ -25,7 +25,7 @@ private:
 	float	height;
 	int		level;
 	int		maxLevel;
-	vector<Object*>	objects;
+	vector<treeobject*>	objects;
 
 	quadtree *	parent;
 	quadtree *	NW;
@@ -33,7 +33,7 @@ private:
 	quadtree *	SW;
 	quadtree *	SE;
 
-	bool	contains( quadtree *child, Object *object );
+	bool	contains( quadtree *child, treeobject *object );
 };
 
 #endif
