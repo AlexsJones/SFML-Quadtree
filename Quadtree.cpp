@@ -13,13 +13,11 @@ Quadtree::Quadtree( float _x, float _y, float _width, float _height, int _level,
 	level	( _level ),
 	maxLevel( _maxLevel )
 {
-	shape.setPosition( x, y );
-	shape.setSize( sf::Vector2f( width, height ) );
-	shape.setFillColor( sf::Color( 0, 0, 0, 0 ) );
-	shape.setOutlineThickness( 1.0f );
-	shape.setOutlineColor( sf::Color( 64, 128, 255 ) );
-	text.setPosition( x, y + level * 16 );
-	text.setCharacterSize( 12 );
+	shape = sf::Shape::Rectangle ( x, y, x + width, y + height, sf::Color( 64, 128, 255 ),0.0f,sf::Color( 0, 0, 0, 0 ) );
+
+
+	text.SetPosition( x, y + level * 16 );
+//text.setCharacterSize( 12 );
 
 	if ( level == maxLevel ) {
 		return;
@@ -99,7 +97,7 @@ void Quadtree::Clear() {
 }
 
 void Quadtree::SetFont( const sf::Font &font ) {
-	text.setFont( font );
+	text.SetFont( font );
 	if ( level != maxLevel ) {
 		NW->SetFont( font );
 		NE->SetFont( font );
@@ -112,9 +110,9 @@ void Quadtree::Draw( sf::RenderTarget &canvas ) {
 	stringstream ss;
 	ss << objects.size();
 	string numObjectsStr = ss.str();
-	text.setString( numObjectsStr );
-	canvas.draw( shape );
-	canvas.draw( text );
+	text.SetText( numObjectsStr );
+	canvas.Draw( shape );
+	canvas.Draw( text );
 	if ( level != maxLevel ) {
 		NW->Draw( canvas );
 		NE->Draw( canvas );

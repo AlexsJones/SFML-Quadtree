@@ -13,30 +13,30 @@ int main()
 	using namespace std;
 
 	sf::RenderWindow app( sf::VideoMode( 800, 600, 32 ), "Quadtree" );
-	app.setFramerateLimit( 60 );
+	app.SetFramerateLimit( 60 );
 
 	sf::Font font;
-	font.loadFromFile( "DroidSans.ttf" );
+	font.LoadFromFile( "DroidSans.ttf" );
 
 	Quadtree quadtree( 0.0f, 0.0f, 800.0f, 600.0f, 0, 3 );
 	quadtree.SetFont( font );
 
 	vector<Object> objects;
 
-	while( app.isOpen() ) {
+	while( app.IsOpened() ) {
 		sf::Event event;
-		sf::Vector2i mousePosition = sf::Mouse::getPosition( app );
-		while( app.pollEvent( event ) ) {
-			if ( event.type == sf::Event::KeyPressed ) {
-				if ( event.key.code == sf::Keyboard::Escape ) {
-					app.close();
+		sf::Vector2f mousePosition = app.ConvertCoords(app.GetInput().GetMouseX(), app.GetInput().GetMouseY());
+		while( app.GetEvent( event ) ) {
+			if ( event.Type == sf::Event::KeyPressed ) {
+				if ( event.Key.Code == sf::Key::Escape ) {
+					app.Close();
 				}
 			}
-			if ( event.type == sf::Event::MouseButtonPressed ) {
+			if ( event.Type == sf::Event::MouseButtonPressed ) {
 				objects.push_back( Object( mousePosition.x, mousePosition.y, 32, 32 ) );
 			}
 		}
-		app.clear();
+		app.Clear();
 
 		for ( int n = 0; n < objects.size(); ++n ) {
 			quadtree.AddObject( &objects[n] );
@@ -48,7 +48,7 @@ int main()
 		cout << returnObjects.size() << endl;
 		quadtree.Clear();
 
-		app.display();
+		app.Display();
 	}
 
 	return 0;

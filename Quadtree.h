@@ -3,8 +3,8 @@
 
 #include <vector>
 #include <SFML/Graphics/RenderTarget.hpp>
-#include <SFML/Graphics/RectangleShape.hpp>
-#include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/Shape.hpp>
+#include <SFML/Graphics/String.hpp>
 
 using namespace std;
 
@@ -37,8 +37,8 @@ private:
 	Quadtree *				SW;
 	Quadtree *				SE;
 
-	sf::RectangleShape		shape;
-	sf::Text				text;
+	sf::Shape		                shape;
+	sf::String				text;
 
 	bool					Contains( Quadtree *child, Object *object );
 };
