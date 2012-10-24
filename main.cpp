@@ -35,7 +35,7 @@ int main()
 
 		for ( int n = 0; n < objects.size(); ++n )
 		{
-			_quadtree.AddObject( &objects[n] );
+			_quadtree.add_object( &objects[n] );
 			objects[n].Draw( app );
 		}
 		while( app.GetEvent( event ) ) 
@@ -49,13 +49,13 @@ int main()
 			}
 			if ( event.Type == sf::Event::MouseButtonPressed ) 
 			{
-				vector<Object*> returnObjects = _quadtree.GetObjectsAt( mousePosition.x, mousePosition.y );
+				vector<Object*> returnObjects = _quadtree.get_objects_at( mousePosition.x, mousePosition.y );
 	
 				cout << returnObjects.size() << endl;
 			}
 		}
 							
-		_quadtree.Clear();
+		_quadtree.clear();
 
 		app.Display();
 	}

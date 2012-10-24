@@ -23,26 +23,26 @@ quadtree::quadtree( float _x, float _y, float _width, float _height, int _level,
 	SE = new quadtree( x + width / 2.0f, y + height / 2.0f, width / 2.0f, height / 2.0f, level+1, maxLevel );
 }
 
-void quadtree::AddObject( Object *object ) {
+void quadtree::add_object( Object *object ) {
 	if ( level == maxLevel ) {
 		objects.push_back( object );
 		return;
 	}
-	if ( Contains( NW, object ) ) {
-		NW->AddObject( object ); return;
-	} else if ( Contains( NE, object ) ) {
-		NE->AddObject( object ); return;
-	} else if ( Contains( SW, object ) ) {
-		SW->AddObject( object ); return;
-	} else if ( Contains( SE, object ) ) {
-		SE->AddObject( object ); return;
+	if ( contains( NW, object ) ) {
+		NW->add_object( object ); return;
+	} else if ( contains( NE, object ) ) {
+		NE->add_object( object ); return;
+	} else if ( contains( SW, object ) ) {
+		SW->add_object( object ); return;
+	} else if ( contains( SE, object ) ) {
+		SE->add_object( object ); return;
 	}
-	if ( Contains( this, object ) ) {
+	if ( contains( this, object ) ) {
 		objects.push_back( object );
 	}
 }
 
-vector<Object*> quadtree::GetObjectsAt( float _x, float _y ) {
+vector<Object*> quadtree::get_objects_at( float _x, float _y ) {
 	if ( level == maxLevel ) {
 		return objects;
 	}
@@ -53,21 +53,21 @@ vector<Object*> quadtree::GetObjectsAt( float _x, float _y ) {
 	}
 	if ( _x > x + width / 2.0f && _x < x + width ) {
 		if ( _y > y + height / 2.0f && _y < y + height ) {
-			childReturnObjects = SE->GetObjectsAt( _x, _y );
+			childReturnObjects = SE->get_objects_at( _x, _y );
 			returnObjects.insert( returnObjects.end(), childReturnObjects.begin(), childReturnObjects.end() );
 			return returnObjects;
 		} else if ( _y > y && _y <= y + height / 2.0f ) {
-			childReturnObjects = NE->GetObjectsAt( _x, _y );
+			childReturnObjects = NE->get_objects_at( _x, _y );
 			returnObjects.insert( returnObjects.end(), childReturnObjects.begin(), childReturnObjects.end() );
 			return returnObjects;
 		}
 	} else if ( _x > x && _x <= x + width / 2.0f ) {
 		if ( _y > y + height / 2.0f && _y < y + height ) {
-			childReturnObjects = SW->GetObjectsAt( _x, _y );
+			childReturnObjects = SW->get_objects_at( _x, _y );
 			returnObjects.insert( returnObjects.end(), childReturnObjects.begin(), childReturnObjects.end() );
 			return returnObjects;
 		} else if ( _y > y && _y <= y + height / 2.0f ) {
-			childReturnObjects = NW->GetObjectsAt( _x, _y );
+			childReturnObjects = NW->get_objects_at( _x, _y );
 			returnObjects.insert( returnObjects.end(), childReturnObjects.begin(), childReturnObjects.end() );
 			return returnObjects;
 		}
@@ -75,21 +75,21 @@ vector<Object*> quadtree::GetObjectsAt( float _x, float _y ) {
 	return returnObjects;
 }
 
-void quadtree::Clear() {
+void quadtree::clear() {
 	if ( level == maxLevel ) {
 		objects.clear();
 		return;
 	} else {
-		NW->Clear();
-		NE->Clear();
-		SW->Clear();
-		SE->Clear();
+		NW->clear();
+		NE->clear();
+		SW->clear();
+		SE->clear();
 	}
 	if ( !objects.empty() ) {
 		objects.clear();
 	}
 }
-bool quadtree::Contains( quadtree *child, Object *object ) {
+bool quadtree::contains( quadtree *child, Object *object ) {
 	return	 !( object->x < child->x ||
 				object->y < child->y ||
 				object->x > child->x + child->width  ||

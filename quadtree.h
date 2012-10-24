@@ -15,9 +15,9 @@ class quadtree {
 public:
 	quadtree( float x, float y, float width, float height, int level, int maxLevel );
 
-	void	AddObject( Object *object );
-	vector<Object*>	GetObjectsAt( float x, float y );
-	void	Clear();
+	void	add_object( Object *object );
+	vector<Object*>	get_objects_at( float x, float y );
+	void	clear();
 private:
 	float	x;
 	float	y;
@@ -33,7 +33,7 @@ private:
 	quadtree *	SW;
 	quadtree *	SE;
 
-	bool	Contains( quadtree *child, Object *object );
+	bool	contains( quadtree *child, Object *object );
 };
 
 #endif
