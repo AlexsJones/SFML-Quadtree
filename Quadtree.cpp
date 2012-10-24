@@ -15,9 +15,8 @@ Quadtree::Quadtree( float _x, float _y, float _width, float _height, int _level,
 {
 	shape = sf::Shape::Rectangle ( x, y, x + width, y + height, sf::Color( 64, 128, 255 ),0.0f,sf::Color( 0, 0, 0, 0 ) );
 
-
+	text.SetSize(12);
 	text.SetPosition( x, y + level * 16 );
-//text.setCharacterSize( 12 );
 
 	if ( level == maxLevel ) {
 		return;

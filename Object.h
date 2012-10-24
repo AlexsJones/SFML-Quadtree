@@ -7,17 +7,17 @@
 
 class Object {
 public:
-	float					x;
-	float					y;
-	float					width;
-	float					height;
+	float   x;
+	float	y;
+	float	width;
+	float	height;
 
-							Object( float x, float y, float width, float height );
+	Object( float x, float y, float width, float height );
 
-	void					Draw( sf::RenderTarget &canvas );
+	void	Draw( sf::RenderTarget &canvas );
 
 private:
-	sf::Shape		shape;
+	sf::Shape	shape;
 };
 
 #endif
