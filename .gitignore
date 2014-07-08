@@ -1,4 +1,6 @@
 # Compiled Object files
+.kdev4
+*.kdev4
 *.slo
 *.lo
 *.o

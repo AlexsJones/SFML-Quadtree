@@ -54,7 +54,7 @@ vector<Object*> Quadtree::GetObjectsAt( float _x, float _y ) {
 	if ( level == maxLevel ) {
 		return objects;
 	}
-	
+
 	vector<Object*> returnObjects, childReturnObjects;
 	if ( !objects.empty() ) {
 		returnObjects = objects;
@@ -125,11 +125,11 @@ void Quadtree::Draw( sf::RenderTarget &canvas ) {
 
 bool Quadtree::Contains( Quadtree *child, Object *object ) {
 	return	 !( object->x < child->x ||
-				object->y < child->y ||
-				object->x > child->x + child->width  ||
-				object->y > child->y + child->height ||
-				object->x + object->width < child->x ||
-				object->y + object->height < child->y ||
-				object->x + object->width > child->x + child->width ||
-				object->y + object->height > child->y + child->height );
+			object->y < child->y ||
+			object->x > child->x + child->width  ||
+			object->y > child->y + child->height ||
+			object->x + object->width < child->x ||
+			object->y + object->height < child->y ||
+			object->x + object->width > child->x + child->width ||
+			object->y + object->height > child->y + child->height );
 }
